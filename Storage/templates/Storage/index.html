@@ -1,0 +1,41 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Kaer Chiller Plant Operating Information System</title>
+    <link rel="stylesheet" href="{% static 'Storage/jquery-ui.css' %}"/>
+    <!--<link rel="stylesheet" href="/static/Storage/jquery-ui.css"/>-->
+    <link rel="stylesheet" href="{% static 'Storage/timepicker/jquery.timepicker.css' %}"/>
+    <script type="text/javascript" src="{% static 'Storage/jquery-3.1.1.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Storage/timepicker/jquery.timepicker.js' %}"></script>
+    <!--<link rel="stylesheet" href="{{ STATIC_URL }}Storage/jquery-ui.css"/>-->
+    <!--<link rel="stylesheet" href="{{ STATIC_URL }}Storage/timepicker/jquery.timepicker.css"/>-->
+    <!--<script type="text/javascript" src="{{ STATIC_URL }}Storage/jquery-3.1.1.js"></script>-->
+    <!--<script type="text/javascript" src="{{ STATIC_URL }}Storage/timepicker/jquery.timepicker.js"></script>-->
+    <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#from_date").datepicker();
+            $("#from_time").timepicker({ 'timeFormat': 'H:i:s' });
+            $("#to_date").datepicker();
+            $("#to_time").timepicker({ 'timeFormat': 'H:i:s' });
+        });
+    </script>
+</head>
+<body>
+<!--<img src="{{ STATIC_URL }}Storage/images/kaer.jpg" style="width:512px;height:256px">-->
+<img src="{% static 'Storage/images/kaer.jpg' %}" style="width:512px;height:256px">
+<br><br>
+<b><p align="left"><font color="blue" size="6">Kaer Realtime Information and Analysis System</font></p></b>
+<br>
+    <form action="/" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p>From Date: <input name='from_date' type="text" id="from_date"></p>
+        <p>From Time: <input name='from_time' type="text" id="from_time"></p>
+        <p>To Date: <input name='to_date' type="text" id="to_date"></p>
+        <p>To Time: <input name='to_time' type="text" id="to_time"></p>
+        <input type="submit" value="Get Report" />
+    </form>
+</body>
